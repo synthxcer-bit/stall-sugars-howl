@@ -1,722 +1,710 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI学习之路 - 人工智能入门指南</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36CFC9',
+            dark: '#1D2129',
+            light: '#F2F3F5',
+            accent: '#722ED1'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+  </style>
+  <style>
+    /* 全局样式 */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* 动画定义 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    
+    /* 导航栏滚动效果 */
+    .nav-scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+<body class="font-sans text-dark bg-white">
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed w-full z-50 transition-custom py-4">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-2">
+          <i class="fa fa-brain text-primary text-2xl"></i>
+          <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">AI学习之路</span>
+        </a>
+        
+        <!-- 桌面端导航 -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#intro" class="font-medium hover:text-primary transition-custom">人工智能简介</a>
+          <a href="#path" class="font-medium hover:text-primary transition-custom">学习路径</a>
+          <a href="#fields" class="font-medium hover:text-primary transition-custom">核心领域</a>
+          <a href="#resources" class="font-medium hover:text-primary transition-custom">学习资源</a>
+          <a href="#faq" class="font-medium hover:text-primary transition-custom">常见问题</a>
         </div>
-    </header>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden text-dark text-xl">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+      
+      <!-- 移动端导航菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2 animate-fade-in">
+        <a href="#intro" class="block py-2 hover:text-primary transition-custom">人工智能简介</a>
+        <a href="#path" class="block py-2 hover:text-primary transition-custom">学习路径</a>
+        <a href="#fields" class="block py-2 hover:text-primary transition-custom">核心领域</a>
+        <a href="#resources" class="block py-2 hover:text-primary transition-custom">学习资源</a>
+        <a href="#faq" class="block py-2 hover:text-primary transition-custom">常见问题</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+  <!-- 英雄区域 -->
+  <header class="pt-28 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-6 animate-fade-in">
+          开启你的<span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">AI学习之旅</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-8 animate-fade-in delay-100">
+          从基础知识到前沿技术，探索人工智能的无限可能，成为未来科技的塑造者
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
+          <a href="#path" class="btn bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-lg transition-custom shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            开始学习
+          </a>
+          <a href="#resources" class="btn bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-3 px-8 rounded-lg transition-custom shadow hover:shadow-md transform hover:-translate-y-1">
+            探索资源
+          </a>
         </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 人工智能简介 -->
+    <section id="intro" class="py-16 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">什么是人工智能？</h2>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="animate-fade-in">
+            <img src="https://picsum.photos/id/1/600/400" alt="人工智能概念图" class="rounded-xl shadow-lg w-full h-auto object-cover" />
+          </div>
+          <div class="animate-fade-in delay-100">
+            <p class="text-lg text-gray-700 mb-6">
+              人工智能（AI）是计算机科学的一个分支，致力于创建能够模拟人类智能的系统。它涵盖了机器学习、深度学习、自然语言处理、计算机视觉等多个领域。
+            </p>
+            <p class="text-lg text-gray-700 mb-6">
+              从语音助手到自动驾驶，从推荐系统到医疗诊断，AI技术已经深入我们生活的方方面面，成为推动科技进步的核心驱动力。
+            </p>
+            <div class="flex flex-wrap gap-3 mt-8">
+              <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">机器学习</span>
+              <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">深度学习</span>
+              <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">神经网络</span>
+              <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">自然语言处理</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+    <!-- 学习路径 -->
+    <section id="path" class="py-16 bg-light">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">AI学习路径</h2>
+          <p class="text-lg text-gray-600 mb-6">循序渐进，系统掌握人工智能知识体系</p>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- 入门阶段 -->
+          <div class="bg-white rounded-xl shadow-lg p-8 transition-custom hover:shadow-xl transform hover:-translate-y-1 animate-fade-in">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i class="fa fa-book text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">入门阶段</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>数学基础：线性代数、微积分、概率论</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>编程基础：Python编程入门</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>AI基础概念与历史发展</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>机器学习基础算法</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- 进阶阶段 -->
+          <div class="bg-white rounded-xl shadow-lg p-8 transition-custom hover:shadow-xl transform hover:-translate-y-1 animate-fade-in delay-100">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i class="fa fa-rocket text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">进阶阶段</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>深度学习理论与实践</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>神经网络架构与优化</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>卷积神经网络与图像处理</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>循环神经网络与自然语言处理</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- 专家阶段 -->
+          <div class="bg-white rounded-xl shadow-lg p-8 transition-custom hover:shadow-xl transform hover:-translate-y-1 animate-fade-in delay-200">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i class="fa fa-star text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">专家阶段</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>前沿AI技术研究</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>大规模模型训练与部署</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>AI伦理与负责任创新</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>跨学科AI应用解决方案</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+    <!-- 核心领域 -->
+    <section id="fields" class="py-16 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">AI核心领域</h2>
+          <p class="text-lg text-gray-600 mb-6">探索人工智能的主要研究和应用方向</p>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 机器学习 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in">
+            <img src="https://picsum.photos/id/180/600/400" alt="机器学习" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">机器学习</h3>
+              <p class="text-gray-600">
+                机器学习是AI的核心分支，研究如何让计算机从数据中学习并改进，而无需显式编程。包括监督学习、无监督学习和强化学习等方向。
+              </p>
+            </div>
+          </div>
+          
+          <!-- 深度学习 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in delay-100">
+            <img src="https://picsum.photos/id/160/600/400" alt="深度学习" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">深度学习</h3>
+              <p class="text-gray-600">
+                深度学习是机器学习的子集，基于神经网络模型，能够处理大规模数据并自动发现特征表示。在图像识别、语音处理等领域取得巨大成功。
+              </p>
+            </div>
+          </div>
+          
+          <!-- 自然语言处理 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in delay-200">
+            <img src="https://picsum.photos/id/119/600/400" alt="自然语言处理" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">自然语言处理</h3>
+              <p class="text-gray-600">
+                自然语言处理（NLP）研究计算机与人类语言之间的交互，使计算机能够理解、解释和生成人类语言，应用于聊天机器人、翻译和文本分析等。
+              </p>
+            </div>
+          </div>
+          
+          <!-- 计算机视觉 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in">
+            <img src="https://picsum.photos/id/96/600/400" alt="计算机视觉" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">计算机视觉</h3>
+              <p class="text-gray-600">
+                计算机视觉使计算机能够从图像或视频中获取高层次的理解，模拟人类视觉系统。应用包括图像识别、目标检测、人脸识别和自动驾驶等。
+              </p>
+            </div>
+          </div>
+          
+          <!-- 强化学习 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in delay-100">
+            <img src="https://picsum.photos/id/218/600/400" alt="强化学习" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">强化学习</h3>
+              <p class="text-gray-600">
+                强化学习研究智能体如何在环境中通过与环境的交互学习最优策略。通过奖励机制引导智能体学习，已在游戏AI和机器人控制等领域取得突破。
+              </p>
+            </div>
+          </div>
+          
+          <!-- AI伦理 -->
+          <div class="group rounded-xl overflow-hidden shadow-lg transition-custom hover:shadow-xl animate-fade-in delay-200">
+            <img src="https://picsum.photos/id/48/600/400" alt="AI伦理" class="w-full h-48 object-cover transition-custom group-hover:scale-105" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-custom">AI伦理与治理</h3>
+              <p class="text-gray-600">
+                AI伦理关注人工智能发展中的道德和社会问题，包括算法偏见、隐私保护、责任认定等。确保AI技术的发展符合人类社会的价值观和利益。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <!-- 学习资源 -->
+    <section id="resources" class="py-16 bg-light">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">推荐学习资源</h2>
+          <p class="text-lg text-gray-600 mb-6">精心挑选的AI学习资料和平台</p>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
+        
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
+          <!-- 在线课程 -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa fa-graduation-cap text-primary mr-3"></i>
+              在线课程
+            </h3>
+            <div class="space-y-6">
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in">
+                <h4 class="font-bold text-lg mb-2">斯坦福大学CS229机器学习</h4>
+                <p class="text-gray-600 mb-3">由Andrew Ng教授讲授的经典机器学习课程，涵盖监督学习、无监督学习和最佳实践等内容。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  查看课程 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in delay-100">
+                <h4 class="font-bold text-lg mb-2">深度学习专项课程 (DeepLearning.AI)</h4>
+                <p class="text-gray-600 mb-3">由Andrew Ng创建的深度学习系列课程，包括神经网络、CNN、RNN、NLP等专题。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  查看课程 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in delay-200">
+                <h4 class="font-bold text-lg mb-2">CS231n计算机视觉课程</h4>
+                <p class="text-gray-600 mb-3">斯坦福大学计算机视觉课程，深入讲解卷积神经网络和图像识别技术。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  查看课程 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 书籍推荐 -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa fa-book text-primary mr-3"></i>
+              书籍推荐
+            </h3>
+            <div class="space-y-6">
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in">
+                <h4 class="font-bold text-lg mb-2">《机器学习实战》</h4>
+                <p class="text-gray-600 mb-3">通过实际案例和代码，介绍机器学习的核心算法和应用方法，适合初学者。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  了解更多 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in delay-100">
+                <h4 class="font-bold text-lg mb-2">《深度学习》(花书)</h4>
+                <p class="text-gray-600 mb-3">由Ian Goodfellow等人撰写的深度学习经典教材，全面系统地介绍深度学习理论和实践。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  了解更多 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+              
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom animate-fade-in delay-200">
+                <h4 class="font-bold text-lg mb-2">《Python数据科学手册》</h4>
+                <p class="text-gray-600 mb-3">介绍Python在数据科学领域的应用，包括NumPy、Pandas、Matplotlib和Scikit-Learn等库。</p>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                  了解更多 <i class="fa fa-external-link ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 开发工具 -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa fa-code text-primary mr-3"></i>
+              开发工具
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in">
+                <img src="https://picsum.photos/id/0/100/100" alt="TensorFlow" class="w-16 h-16 mx-auto mb-3 rounded" />
+                <h4 class="font-bold mb-2">TensorFlow</h4>
+                <p class="text-sm text-gray-600">Google开发的开源机器学习框架</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in delay-100">
+                <img src="https://picsum.photos/id/1/100/100" alt="PyTorch" class="w-16 h-16 mx-auto mb-3 rounded" />
+                <h4 class="font-bold mb-2">PyTorch</h4>
+                <p class="text-sm text-gray-600">Facebook开发的开源机器学习框架</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in delay-200">
+                <img src="https://picsum.photos/id/2/100/100" alt="Scikit-learn" class="w-16 h-16 mx-auto mb-3 rounded" />
+                <h4 class="font-bold mb-2">Scikit-learn</h4>
+                <p class="text-sm text-gray-600">Python机器学习库，简单高效</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in">
+                <img src="https://picsum.photos/id/3/100/100" alt="OpenCV" class="w-16 h-16 mx-auto mb-3 rounded" />
+                <h4 class="font-bold mb-2">OpenCV</h4>
+                <p class="text-sm text-gray-600">计算机视觉库，用于图像处理</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 社区平台 -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa fa-users text-primary mr-3"></i>
+              社区平台
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in">
+                <i class="fa fa-github text-4xl text-gray-800 mb-3"></i>
+                <h4 class="font-bold mb-2">GitHub</h4>
+                <p class="text-sm text-gray-600">开源项目和代码分享平台</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in delay-100">
+                <i class="fa fa-stack-overflow text-4xl text-orange-500 mb-3"></i>
+                <h4 class="font-bold mb-2">Stack Overflow</h4>
+                <p class="text-sm text-gray-600">编程问题解答社区</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in delay-200">
+                <i class="fa fa-linkedin text-4xl text-blue-600 mb-3"></i>
+                <h4 class="font-bold mb-2">LinkedIn</h4>
+                <p class="text-sm text-gray-600">专业社交和知识分享平台</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-custom animate-fade-in">
+                <i class="fa fa-meetup text-4xl text-red-600 mb-3"></i>
+                <h4 class="font-bold mb-2">Meetup</h4>
+                <p class="text-sm text-gray-600">线下技术交流活动平台</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+    <!-- 常见问题 -->
+    <section id="faq" class="py-16 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">常见问题</h2>
+          <p class="text-lg text-gray-600 mb-6">关于AI学习的常见疑问解答</p>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
-    </footer>
+        
+        <div class="max-w-3xl mx-auto space-y-6">
+          <!-- FAQ项目 -->
+          <div class="faq-item bg-light rounded-xl overflow-hidden shadow-md animate-fade-in">
+            <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+              <span class="font-bold text-lg">我没有编程基础，能学习AI吗？</span>
+              <i class="fa fa-chevron-down text-primary transition-custom"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                当然可以！虽然编程是AI的重要基础，但完全可以从零开始学习。建议先掌握Python编程语言，它是AI领域最常用的语言，语法简洁易懂。
+                许多AI入门课程都假设学员没有编程经验，会从基础开始教授。关键是保持学习热情和耐心，循序渐进。
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item bg-light rounded-xl overflow-hidden shadow-md animate-fade-in delay-100">
+            <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+              <span class="font-bold text-lg">学习AI需要很强的数学基础吗？</span>
+              <i class="fa fa-chevron-down text-primary transition-custom"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                数学是AI的基础，尤其是线性代数、微积分和概率论。不过，入门阶段并不需要深入理解所有数学细节，可以先通过直观理解和实践掌握基本概念。
+                随着学习深入，再逐步加强数学基础。许多成功的AI实践者都是在应用中逐步提升数学能力的。
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item bg-light rounded-xl overflow-hidden shadow-md animate-fade-in delay-200">
+            <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+              <span class="font-bold text-lg">AI和机器学习、深度学习有什么区别？</span>
+              <i class="fa fa-chevron-down text-primary transition-custom"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                人工智能是一个广泛的领域，指的是让计算机模拟人类智能的科学。机器学习是AI的一个分支，专注于让计算机从数据中学习而无需显式编程。
+                深度学习则是机器学习的一个子集，基于多层神经网络模型，能够处理大规模数据并自动发现特征表示。简单来说：AI > 机器学习 > 深度学习。
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item bg-light rounded-xl overflow-hidden shadow-md animate-fade-in">
+            <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+              <span class="font-bold text-lg">学习AI需要多长时间？</span>
+              <i class="fa fa-chevron-down text-primary transition-custom"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                学习AI是一个持续的过程，时间长短因人而异。一般来说，基础知识的学习需要3-6个月的全职学习或6-12个月的兼职学习。
+                要达到专业水平则需要更长时间的实践和深入学习。关键是保持持续学习的习惯，跟上技术发展的步伐。
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item bg-light rounded-xl overflow-hidden shadow-md animate-fade-in delay-100">
+            <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+              <span class="font-bold text-lg">AI领域有哪些职业机会？</span>
+              <i class="fa fa-chevron-down text-primary transition-custom"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                AI领域的职业机会非常广泛，包括机器学习工程师、数据科学家、AI研究员、自然语言处理专家、计算机视觉工程师、AI产品经理等。
+                此外，许多传统行业也在招聘AI专业人才，如医疗、金融、交通等。随着AI技术的普及，相关职业需求将持续增长。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+    <!-- 行动召唤 -->
+    <section class="py-16 bg-gradient-to-r from-primary to-accent text-white">
+      <div class="container mx-auto px-4 md:px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">开始你的AI学习之旅</h2>
+        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+          无论你是初学者还是有一定经验，AI领域都有适合你的学习路径。加入我们，一起探索人工智能的无限可能！
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#path" class="btn bg-white text-primary hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition-custom shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            学习路径
+          </a>
+          <a href="#resources" class="btn bg-transparent hover:bg-white/10 text-white border border-white font-medium py-3 px-8 rounded-lg transition-custom shadow hover:shadow-md transform hover:-translate-y-1">
+            学习资源
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fa fa-brain text-primary text-2xl"></i>
+            <span class="text-xl font-bold">AI学习之路</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            致力于为AI学习者提供全面、系统的学习资源和路径指导，帮助你在人工智能领域取得成功。
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="#intro" class="text-gray-400 hover:text-white transition-custom">人工智能简介</a></li>
+            <li><a href="#path" class="text-gray-400 hover:text-white transition-custom">学习路径</a></li>
+            <li><a href="#fields" class="text-gray-400 hover:text-white transition-custom">核心领域</a></li>
+            <li><a href="#resources" class="text-gray-400 hover:text-white transition-custom">学习资源</a></li>
+            <li><a href="#faq" class="text-gray-400 hover:text-white transition-custom">常见问题</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">联系我们</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-primary mt-1 mr-2"></i>
+              <span class="text-gray-400">contact@ailearningpath.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-primary mt-1 mr-2"></i>
+              <span class="text-gray-400">+123 456 7890</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+              <span class="text-gray-400">123 AI Street, Tech City</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+          <p class="text-gray-400 mb-4">
+            订阅我们的 newsletter，获取最新的AI学习资源和行业资讯。
+          </p>
+          <form class="flex">
+            <input type="email" placeholder="你的邮箱地址" class="px-4 py-2 rounded-l-lg w-full text-dark focus:outline-none" />
+            <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg transition-custom">
+              <i class="fa fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">
+          &copy; 2023 AI学习之路. 保留所有权利.
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-custom">隐私政策</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-custom">服务条款</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-custom">Cookie政策</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    });
+    
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // FAQ折叠效果
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        // 切换当前FAQ的显示状态
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+        
+        // 关闭其他FAQ
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== question) {
+            q.nextElementSibling.classList.add('hidden');
+            q.querySelector('i').classList.remove('fa-chevron-up');
+            q.querySelector('i').classList.add('fa-chevron-down');
+          }
         });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+      });
+    });
+    
+    // 页面加载动画
+    document.addEventListener('DOMContentLoaded', function() {
+      // 为所有带animate-fade-in类的元素添加动画
+      const fadeElements = document.querySelectorAll('.animate-fade-in');
+      fadeElements.forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.style.opacity = '1';
+        }, 100);
+      });
+    });
+  </script>
 </body>
-
 </html>
